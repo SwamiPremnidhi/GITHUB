@@ -1,0 +1,11 @@
+FROM ubuntu
+RUN apt-get update && apt-get install -y
+RUN apt install python3 -y
+RUN apt install wget -y
+RUN apt install unzip -y
+RUN mkdir /opt/tomcat
+WORKDIR /opt/tomcat
+ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23-windows-x64.zip /opt/tomcat
+RUN unzip apache-tomcat-10.0.23-windows-x64.zip
+CMD [ "/opt/tomcat/apache-tomcat-10.0.23-windows-x64/bin/catalina.sh", "run"]
+ENTRYPOINT [ "python3", "--version" ]
